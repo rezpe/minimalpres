@@ -1,0 +1,206 @@
+
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js – The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="http://lab.hakim.se/reveal-js/css/reveal.css">
+		<link rel="stylesheet" href="http://lab.hakim.se/reveal-js/css/theme/white.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="http://lab.hakim.se/reveal-js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'http://lab.hakim.se/reveal-js/css/print/pdf.css' : 'http://lab.hakim.se/reveal-js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+        <section>
+          <h2>Search web Service</h2>
+          <h4>Sebastien Perez Vasseur</h4>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ##Search questions
+            * What are the top O&D's and destinations searched per search period and per travel period ?
+            * How in advance does traveller search for destinations given the search period or the travel period?
+            * What's the evolution of the search numbers per O&D per search time or per travel time ?
+            * What are the highest variations in searches between 2 different months ?
+        </script>
+      </section>
+
+      <section >
+        <h2>Architecture</h2>
+          <div class="mermaid">
+            graph LR
+                Browser --- WS["Web Server"]
+                WS --- Cassandra
+                Cassandra --- |receives|TI["TI Engine"]
+        </div>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ##Namespace
+        * UI: Daily, weekly, monthly, quarterly and yearly
+        * V1: Monthly
+        </script>
+  </section>
+
+  <section data-markdown>
+    <script type="text/template">
+      ##Usage Numbers:
+
+      </script>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+    ##What if we want to answer other questions like ...
+* TA Numbers vs Market ?
+* number of searches per specific holiday period ?
+
+    </script>
+</section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ##SQL Web Services:
+* Restricted SQL query as input
+* Table and field based security
+* No Joins allowed in first version
+
+        </script>
+      </section>
+
+      <section>
+        <h2>Architecture</h2>
+          <div class="mermaid">
+graph LR
+      Browser --- WS["Web Server"]
+      WS --- Impala
+      WS --- Cassandra
+      Cassandra --- |receives| Engine["TI Engine"]
+      Impala --- |receives| Engine["TI Engine"]
+          </div>
+    </section>
+
+    <section>
+      <h2>Job Based Flow:</h2>
+    <div class="mermaid">
+      sequenceDiagram
+Browser->>Web Server: Query: SELECT * FROM search Limit 1
+Web Server-->>Web Server: Verifies Access and Query
+Note right of Web Server: Request to Impala
+Web Server-->>Browser: Job Created
+Browser->>Web Server: What is the status of Job ?
+Web Server-->>Browser: Unfinished
+Browser->>Web Server: What is the status of Job ?
+Web Server-->>Browser: Unfinished
+Note right of Web Server: Impala provides answer
+Browser->>Web Server: What is the status of Job ?
+Web Server-->>Browser: Finished and here is the result
+    </div>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ##UI Approach:
+Web Services are compliant with:
+* Tableau Web Data Connector
+* Qlik Data Connector
+* Static Reports or Presentations
+* Data Scientist Tools
+* Dashboards
+* Web Application
+    </script>
+    </section>
+
+
+			</div>
+
+		</div>
+
+		<script src="http://lab.hakim.se/reveal-js/lib/js/head.min.js"></script>
+		<script src="http://lab.hakim.se/reveal-js/js/reveal.js"></script>
+    <script src="https://cdn.rawgit.com/knsv/mermaid/0.5.8/dist/mermaid.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'http://lab.hakim.se/reveal-js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'http://lab.hakim.se/reveal-js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'http://lab.hakim.se/reveal-js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'http://lab.hakim.se/reveal-js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'http://lab.hakim.se/reveal-js/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'http://lab.hakim.se/reveal-js/plugin/notes/notes.js', async: true }
+				]
+			});
+
+      // call mermaid if present
+      if(typeof mermaid !== 'undefined' ) {
+            mermaid.initialize({mermaid: { cloneCssStyles: false }}, ".mermaid");
+          }
+
+		</script>
+
+    <style>
+    svg  {
+      font-size: 15px
+    }
+
+    svg rect {
+      fill: white;
+      stroke: black;
+    }
+
+    svg path {
+      stroke: black;
+    }
+    </style>
+
+		</div>
+
+
+
+	</body>
+</html>
