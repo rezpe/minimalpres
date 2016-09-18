@@ -1,0 +1,40 @@
+@import 'https://fonts.googleapis.com/css?family=Didact+Gothic';
+
+body{
+  font-family: 'Didact Gothic', sans-serif;
+  background-color: lightblue;
+}
+
+.reveal section {
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  box-shadow:
+}
+
+.reveal section h1 {
+  font-size: 74px;
+  line-height: 600px;
+  text-align: center;
+  vertical-align: center;
+}
+
+.reveal section h2 {
+  font-size: 36px;
+  text-align: left;
+  padding: 10px;
+  border-bottom: 5px solid black
+}
+
+.reveal section iframe {
+  width:500px;
+  height: 500px;
+  margin: 20px
+}
+
+.reveal section img {
+  min-width: 400px;
+  max-width:500px;
+  max-height: 500px;
+  margin: 20px
+}

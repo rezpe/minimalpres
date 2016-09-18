@@ -5,10 +5,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js – The HTML Presentation Framework</title>
+		<title>Presentation</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="author" content="Sebastien Perez">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -16,7 +16,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="http://lab.hakim.se/reveal-js/css/reveal.css">
-		<link rel="stylesheet" href="http://lab.hakim.se/reveal-js/css/theme/white.css" id="theme">
+
+		<link rel="stylesheet" href="theme.css">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="http://lab.hakim.se/reveal-js/lib/css/zenburn.css">
@@ -42,108 +43,12 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
-        <section>
-          <h2>Search web Service</h2>
-          <h4>Sebastien Perez Vasseur</h4>
-        </section>
-
-        <section data-markdown>
-          <script type="text/template">
-            ##Search questions
-            * What are the top O&D's and destinations searched per search period and per travel period ?
-            * How in advance does traveller search for destinations given the search period or the travel period?
-            * What's the evolution of the search numbers per O&D per search time or per travel time ?
-            * What are the highest variations in searches between 2 different months ?
-        </script>
-      </section>
-
-      <section >
-        <h2>Architecture</h2>
-          <div class="mermaid">
-            graph LR
-                Browser --- WS["Web Server"]
-                WS --- Cassandra
-                Cassandra --- |receives|TI["TI Engine"]
-        </div>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-        ##Namespace
-        * UI: Daily, weekly, monthly, quarterly and yearly
-        * V1: Monthly
-        </script>
-  </section>
-
-  <section data-markdown>
-    <script type="text/template">
-      ##Usage Numbers:
-
-      </script>
-</section>
-
-<section data-markdown>
-  <script type="text/template">
-    ##What if we want to answer other questions like ...
-* TA Numbers vs Market ?
-* number of searches per specific holiday period ?
-
-    </script>
-</section>
-
-        <section data-markdown>
-          <script type="text/template">
-            ##SQL Web Services:
-* Restricted SQL query as input
-* Table and field based security
-* No Joins allowed in first version
-
-        </script>
-      </section>
-
-      <section>
-        <h2>Architecture</h2>
-          <div class="mermaid">
-graph LR
-      Browser --- WS["Web Server"]
-      WS --- Impala
-      WS --- Cassandra
-      Cassandra --- |receives| Engine["TI Engine"]
-      Impala --- |receives| Engine["TI Engine"]
-          </div>
-    </section>
-
-    <section>
-      <h2>Job Based Flow:</h2>
-    <div class="mermaid">
-      sequenceDiagram
-Browser->>Web Server: Query: SELECT * FROM search Limit 1
-Web Server-->>Web Server: Verifies Access and Query
-Note right of Web Server: Request to Impala
-Web Server-->>Browser: Job Created
-Browser->>Web Server: What is the status of Job ?
-Web Server-->>Browser: Unfinished
-Browser->>Web Server: What is the status of Job ?
-Web Server-->>Browser: Unfinished
-Note right of Web Server: Impala provides answer
-Browser->>Web Server: What is the status of Job ?
-Web Server-->>Browser: Finished and here is the result
-    </div>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-        ##UI Approach:
-Web Services are compliant with:
-* Tableau Web Data Connector
-* Qlik Data Connector
-* Static Reports or Presentations
-* Data Scientist Tools
-* Dashboards
-* Web Application
-    </script>
-    </section>
-
+				<section data-markdown="pres.md"
+         data-separator="^---"
+         data-separator-vertical="^==="
+         data-separator-notes="^Note:"
+         data-charset="iso-8859-15">
+				</section>
 
 			</div>
 
