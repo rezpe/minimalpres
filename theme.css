@@ -23,6 +23,7 @@ body{
   font-size: 36px;
   text-align: left;
   padding: 10px;
+  margin-bottom: 20px;
   border-bottom: 5px solid black
 }
 
@@ -37,4 +38,24 @@ body{
   max-width:500px;
   max-height: 500px;
   margin: 20px
+}
+
+.reveal section ul {
+  margin: 0 20px;
+  padding: 0 40px;
+  text-align: left;
+  font-size:25px;
+  line-height: 30px;
+}
+
+.reveal section ul li {
+  line-height: 30px;
+}
+
+.reveal section p {
+  margin: 0 20px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  text-align: left;
+  font-size:25px
 }

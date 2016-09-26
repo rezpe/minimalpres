@@ -62,15 +62,38 @@ Every variable can be encoded in a visual variable.
 
 ---
 
-## Examples
+## Examples - Angle
 
 <iframe src="vizexample/visencodingangle/index.html">
 
 ---
 
-## Data-Ink Ratio
+## Examples - Area
 
-<iframe src="vizexample/datainkratiobad/index.html">
+<iframe src="vizexample/visencodingarea/index.html">
+
+---
+## Examples - Color
+
+<iframe src="vizexample/visencodingcolour/index.html">
+
+---
+
+## Examples - Length
+
+<iframe src="vizexample/visencodinglength/index.html">
+
+---
+
+## Examples - Position
+
+<iframe src="vizexample/visencodingposition/index.html">
+
+---
+
+## Visual Encoding Ranking
+
+![Senses](img/ranking.png)
 
 ---
 
@@ -80,12 +103,21 @@ Every variable can be encoded in a visual variable.
 
 ---
 
+## Data-Ink Ratio - Bad Example
+
+<iframe src="vizexample/datainkratiobad/index.html">
+
+---
+
 ## Make it right in B&W
 
+<iframe src="vizexample/colourBW/index.html">
 
 ---
 
 ## Use Hue Color
+
+![Senses](img/hue.jpg)
 
 ---
 
